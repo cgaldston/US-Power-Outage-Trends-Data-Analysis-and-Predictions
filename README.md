@@ -4,18 +4,18 @@ In this project we analyze trends in data on power outages in the United States 
 
 https://cgaldston.github.io/US-Power-Outage-Trends-Data-Analysis-and-Predictions/
 
-# Introduction
+## Introduction
 
-# Data Cleaning and Exploratory Data Analysis
+## Data Cleaning and Exploratory Data Analysis
 
-# Assessment of Missingness
+## Assessment of Missingness
 
-# Hypothesis Testing
+## Hypothesis Testing
 
-# Framing a Prediction Problem
+## Framing a Prediction Problem
 
-# Baseline Model
+## Baseline Model
 
-# Final Model
+## Final Model
 
-# Fairness Analysis
+## Fairness Analysis
