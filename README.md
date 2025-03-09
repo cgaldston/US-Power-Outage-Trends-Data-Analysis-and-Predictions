@@ -40,16 +40,35 @@ Our dataset consists of 1534 rows and 56 columns, but the main ones that we are 
 
 
 
-# Data Cleaning and Exploratory Data Analysis
+## Data Cleaning and Exploratory Data Analysis
 
-# Assessment of Missingness
+### Cleaning our dataset
+1. We started our data cleaning process by removing columns from our dataset that we definitively knew we were not going to use later. These included columns such as `PCT_LAND`, `PCT_WATER_TOT`, `PCT_WATER_INLAND`, `AREAPCT_UC`, `AREAPCT_URBAN`, `POPDEN_RURAL`, `UTIL.CONTRI`, `UTIL.CONTRI`, `PC.REALGSP.STATE`, `PC.REALGSP.USA`, `RES.PERCEN`, `COM.PERCEN`, `IND.PERCEN`, `HURRICANE.NAMES`, `POSTAL.CODE`
 
-# Hypothesis Testing
+2. Next we noticed that our dataset had a few columns that contained dates that were formatted as strings. These columns included `OUTAGE.START.DATE`, `OUTAGE.START.TIME`, `OUTAGE.RESTORATION.DATE`, and `OUTAGE.RESTORATION.TIME`. We combined the dates and times and then converted these strings to pd.DateTime objects so that we could use them in our plots and model. 
 
-# Framing a Prediction Problem
+3. 
 
-# Baseline Model
+### Univariate Analysis
+For our univariate analysis it first makes sense to look at the distribution of the `OUTAGE.DURATION` looks as this is the focus of our predictive task. 
 
-# Final Model
+<iframe
+  src="assets/file-name.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
-# Fairness Analysis
+Based on this plot, we can tell that most of the power outages are in the dataset last less than ten thousand total minutes, however there are some outliers that lasted much longer. After doing some research into the data, we found that there were a few outliers that seemed to be incorrect as upon researching these outages we were unable to find references of these outages online, so we decided to remove them from our data set. 
+
+## Assessment of Missingness
+
+## Hypothesis Testing
+
+## Framing a Prediction Problem
+
+## Baseline Model
+
+## Final Model
+
+## Fairness Analysis
