@@ -75,7 +75,42 @@ Based on this plot, we can tell that most of the power outages are in the datase
 
 ## Assessment of Missingness
 
+# NMAR Analysis
+A columns that is most likely  NMAR is `OUTAGE.START`. The paper that this data comes from states that the data was aquired from a variety of public datasets. In this case it might be possible the time `OUTAGE.RESTORATION` was avaiable from a dataset , but its correspodning `OUTAGE.START` was not hence the NA value. Information we could collect in order for the missigness to determine if missingess Mechanism is MAR is to check the sources used for the collection of `OUTAGE.RESTORATION` (`OUTAGE.RESTORATION.DATE`, `OUTAGE.RESTORATION.TIME`) and Determine whether some sources less likely to have the correspodinng OUTAGE.START for an `OUTAGE.RESTORATION`. 
+
+# Missingness Dependency
+We will be testing the missingness dependency for `DEMAND.LOSS.MW` with respect to `CAUSE.CATEGORY` and `CLIMATE.REGION`.
+- **CAUSE.CATEGORY**:
+We will first examine the distribution of `CAUSE.CATEGORY` when `DEMAND.LOSS.MW` is missing vs not missing.
+
+Null Hypothesis: The distribution of `CAUSE.CATEGORY` is the same when `DEMAND.LOSS.MW` is missing vs not missing.
+
+Alternate Hypothesis: The distribution of `CAUSE.CATEGORY` is different when `DEMAND.LOSS.MW` is missing vs not missing.
+
+<iframe
+  src="assets/demand_loss_missingness_Cause_cat.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+
+- **CLIMATE.REGION**:
+Now we will examine the distribution of `CLIMATE.REGION` when `DEMAND.LOSS.MW` is missing vs not missing.
+
+Null Hypothesis: The distribution of `CLIMATE.REGION` is the same when `DEMAND.LOSS.MW` is missing vs not missing.
+
+Alternate Hypothesis: The distribution of `CLIMATE.REGION` is different when `DEMAND.LOSS.MW` is missing vs not missing.
+
+<iframe
+  src="assets/demand_loss_missingness_CLIMATE_cat.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 ## Hypothesis Testing
+
 
 ## Framing a Prediction Problem
 
