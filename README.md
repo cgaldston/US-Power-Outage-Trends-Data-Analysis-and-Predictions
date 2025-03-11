@@ -96,6 +96,13 @@ Another relationship that we chose to inspect was how the location of the power 
 
 Based on this plot, it seems that the state the power outage occured has an impact on the duration of the outage. This can be helpful for us to understand qualities of these areas that may impact outage duration, and also suggests it will be helpful for our prediction task as well. 
 
+### Interesting Aggregates
+For our aggreagate functions, we decided to group our dataset by the causes of the outage. We then looked at the average power outage duration and average number of customers affected for each of these groups. This allows us to see how the cause of a power outage affects the impact on the community it has. 
+
+| CAUSE.CATEGORY                |   OUTAGE.DURATION |   CUSTOMERS.AFFECTED |\n|:------------------------------|------------------:|---------------------:|\n| equipment failure             |           399.13  |            109223    |\n| fuel supply emergency         |         10911.9   |                 0.2  |\n| intentional attack            |           429.98  |              1865.52 |\n| islanding                     |           200.545 |              6169.09 |\n| public appeal                 |          1468.45  |              7618.76 |\n| severe weather                |          3883.99  |            188490    |\n| system operability disruption |           728.87  |            210562    |
+
+Looking at this table, it seems that there are clearly change in the magnitude of the impact depending on what causes the outage. It also seems that we still may have some outliers, as fuel supply outages almost affect zero customers on average. 
+
 ## Assessment of Missingness
 
 # NMAR Analysis
