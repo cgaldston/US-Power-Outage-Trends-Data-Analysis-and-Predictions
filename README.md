@@ -73,6 +73,29 @@ For our univariate analysis it first makes sense to look at the distribution of 
 
 Based on this plot, we can tell that most of the power outages are in the dataset last less than ten thousand total minutes, however there are some outliers that lasted much longer. After doing some research into the data, we found that there were a few outliers that seemed to be incorrect as upon researching these outages we were unable to find references of these outages online, so we decided to remove them from our data set. 
 
+### Bivariate Analysis
+For our bivariate analysis we decided to look at the relationship between outage duration the other columns in our dataset. We started by creating scatter plots between outage duration and every quantitative column in our dataset, to see if there were any noticeable relationships that we could use to better understand how different variables impact outage duration. Of these scatter plots, the most interesting relationship we found was between outage duration and customers affected. We also added a trendline to the plot so that we could better visualize this trend. 
+
+<iframe
+  src="assets/duration_vs_customers_affected.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+As we can see from the plot, although the trend is no incredibly strong, there seems to be some positive correlation between the duration of the outage and the number of customers affected. This is important as it gives evidence that the duration of an outage has a result on how the outage impacts the community. We also calculated the correlation coefficient for this relationship so that we have a quantitative measurement of this trend and we found a correlation coefficient of 0.2619. This also indicates that using this feature will be helpful later in this project when we try to predict the duration of an outage. 
+
+Another relationship that we chose to inspect was how the location of the power outage impacts the duration of the outage. To do this, we used Folium to create a map of the United States and heat mapped areas states by outage duration. 
+
+<iframe
+  src="assets/outage_map.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+Based on this plot, it seems that the state the power outage occured has an impact on the duration of the outage. This can be helpful for us to understand qualities of these areas that may impact outage duration, and also suggests it will be helpful for our prediction task as well. 
+
 ## Assessment of Missingness
 
 # NMAR Analysis
