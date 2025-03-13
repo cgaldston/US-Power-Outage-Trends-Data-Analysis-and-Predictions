@@ -182,7 +182,6 @@ The p-value that we got was 0.0008, which was less that our significance level o
 
 
 
-
 ## Framing a Prediction Problem
 Our model aims to predict the duration of an outage, a continuous variable, based on features available at the time of the event. By accurately forecasting outage durations, communities can be better prepared, enabling more efficient response strategies and minimizing disruption to essential services. Since this is a regression problem, we will evaluate our model using two key metrics:
 
@@ -200,5 +199,6 @@ We first onehotencoded the cause category and then fit the model.
 The MAE was 2586 and R^2 was 0.16 indicating that our baseline model did not perform the best. 
 
 ## Final Model
+For our final model, we wanted to explore what features of our dataset would be useful for our predictive tasks. We started by one hot encoding our categorical variables. Because all of our categories are nominal, we used sklearns OneHotEncoder(). We also needed to make sure that all of our quantitative variables are represented properly as they were initially represented as objects. Some of the features that we incorporated in our final model were `U.S._STATE`, `CLIMATE.REGION`, `ANOMALY.LEVEL`, `CLIMATE.CATEGORY`, 'OUTAGE.START.DATE', 'OUTAGE.START.TIME', 'OUTAGE.RESTORATION.DATE', 'OUTAGE.RESTORATION.TIME', 'CAUSE.CATEGORY.DETAIL', 'OUTAGE.DURATION', 'CUSTOMERS.AFFECTED', 'TOTAL.PRICE', 'TOTAL.SALES', 'TOTAL.CUSTOMERS','POPULATION'
 
 ## Fairness Analysis
