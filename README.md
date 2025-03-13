@@ -160,6 +160,28 @@ We will be testing the missingness dependency for `DEMAND.LOSS.MW` with respect 
 
 ## Hypothesis Testing
 
+For our hypothesis test, we wanted to look at whether or not the season that the power outage occured had an affect on how long the power outage lasted. Since we didn't have a season column in our original data set, we had to map each month in the `MONTH` column to the season which that month is in to create a new `SEASON` column. Because we are going to later try to predict `OUTAGE.DURATION` in our project, we thought this test might be helpful to determine if season could be a useful feature in our model. 
+
+**Null Hypothesis:** On average, the duration of power outages is the same regardless of what season the power outage occured. 
+
+**Alternative Hypothesis:** On average, the duration of power outages differ depending on what season the power outage occured. 
+
+**Test Statistic:** We used absolute difference in means as our test statistic. More specifically, we computed the absoluted difference in means for each pair of seasons, and then averaged them. 
+
+**Results:** We performed a permutation test with 10,000 simulations by shuffling the values in the `SEASON` column and recomputing the difference in means for every simulation. We used a signficiance level of 0.05. 
+
+The p-value that we got was 0.0008, which was less that our significance level of 0.05. As a result we rejected the null hypothesis and moved to the alternative: it seems that there is a difference in the average power outage duration for different seasons, however, we cannot conclude absolutely that season has an impact on `OUTAGE.DURATION`. Here is a plot of the absolute difference in means for every simulation. 
+
+
+<iframe
+  src="assests/hypothesis_test.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+
+
 
 ## Framing a Prediction Problem
 Our model aims to predict the duration of an outage, a continuous variable, based on features available at the time of the event. By accurately forecasting outage durations, communities can be better prepared, enabling more efficient response strategies and minimizing disruption to essential services. Since this is a regression problem, we will evaluate our model using two key metrics:
