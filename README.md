@@ -6,7 +6,7 @@ https://cgaldston.github.io/US-Power-Outage-Trends-Data-Analysis-and-Predictions
 
 ### Introduction
 
-For this project, we decided to examine data on major power outages in the continental U.S. from January 2000 to July 2016. The Department of Energy defines a major power outage as an outage that "impacted atleast 50,000 customers or caused an unplanned firm load loss of atleast 300 MW." Major power outages can have an incredibly detrimental impact on communities, so understanding what factors play a role in the magnitude of these outages. This dataset was curated by Mukherjee, Nateghi, Hastak at Purdue School of Engineering. To determine magnitude we chose to primarily focus on the duration of an outage because the longer that an area is out of power can have a large impact on 
+For this project, we decided to examine data on major power outages in the continental U.S. from January 2000 to July 2016. The Department of Energy defines a major power outage as an outage that "impacted atleast 50,000 customers or caused an unplanned firm load loss of atleast 300 MW." Major power outages can have an incredibly detrimental impact on communities, so understanding what factors play a role in the magnitude of these outages. This dataset was curated by Mukherjee, Nateghi, Hastak at Purdue School of Engineering. To determine magnitude we chose to primarily focus on the duration of an outage because the longer that an area is out of power the larger impact that is had on them.  
 
 Our key question for this project is **What are the main factors that impact the duration of major power outages in the continental U.S and how can we accurately predict how long an outage will last?** This is an important question as if we can understand what is contributing the most to power outages we may be able to help local governments and utility companies respond more effectively to future incidents. 
 
@@ -43,7 +43,7 @@ Our dataset consists of 1534 rows and 56 columns, but the main ones that we are 
 ## Data Cleaning and Exploratory Data Analysis
 
 ### Cleaning our dataset
-1. We started our data cleaning process by removing columns from our dataset that we definitively knew we were not going to use later. These included columns such as `PCT_LAND`, `PCT_WATER_TOT`, `PCT_WATER_INLAND`, `AREAPCT_UC`, `AREAPCT_URBAN`, `POPDEN_RURAL`, `UTIL.CONTRI`, `UTIL.CONTRI`, `PC.REALGSP.STATE`, `PC.REALGSP.USA`, `RES.PERCEN`, `COM.PERCEN`, `IND.PERCEN`, `HURRICANE.NAMES`, `POSTAL.CODE`
+1. We started our data cleaning process by removing columns from our dataset that we knew we were not going to use later, either because they provide redundant infromation or would not be useful in our model. These included columns such as `PCT_LAND`, `PCT_WATER_TOT`, `PCT_WATER_INLAND`, `AREAPCT_UC`, `AREAPCT_URBAN`, `POPDEN_RURAL`, `UTIL.CONTRI`, `UTIL.CONTRI`, `PC.REALGSP.STATE`, `PC.REALGSP.USA`, `RES.PERCEN`, `COM.PERCEN`, `IND.PERCEN`, `HURRICANE.NAMES`, `POSTAL.CODE`
 
 2. Next we noticed that our dataset had a few columns that contained dates that were formatted as strings. These columns included `OUTAGE.START.DATE`, `OUTAGE.START.TIME`, `OUTAGE.RESTORATION.DATE`, and `OUTAGE.RESTORATION.TIME`. We combined the dates and times and then converted these strings to pd.DateTime objects so that we could use them in our plots and model. 
 
@@ -106,16 +106,16 @@ Looking at this table, it seems that there are clearly change in the magnitude o
 ## Assessment of Missingness
 
 # NMAR Analysis
-A columns that is most likely  NMAR is `OUTAGE.START`. The paper that this data comes from states that the data was aquired from a variety of public datasets. In this case it might be possible the time `OUTAGE.RESTORATION` was avaiable from a dataset , but its correspodning `OUTAGE.START` was not hence the NA value. Information we could collect in order for the missigness to determine if missingess Mechanism is MAR is to check the sources used for the collection of `OUTAGE.RESTORATION` (`OUTAGE.RESTORATION.DATE`, `OUTAGE.RESTORATION.TIME`) and Determine whether some sources less likely to have the correspodinng OUTAGE.START for an `OUTAGE.RESTORATION`. 
+A columns that is most likely  NMAR is `OUTAGE.START`. The paper that this data comes from states that the data was aquired from a variety of public datasets. In this case it might be possible the time `OUTAGE.RESTORATION` was avaiable from a dataset , but its corresponding `OUTAGE.START` was not hence the NA value. Information we could collect in order for the missigness to determine if missingess Mechanism is MAR is to check the sources used for the collection of `OUTAGE.RESTORATION` (`OUTAGE.RESTORATION.DATE`, `OUTAGE.RESTORATION.TIME`) and Determine whether some sources less likely to have the correspodinng OUTAGE.START for an `OUTAGE.RESTORATION`. 
 
 # Missingness Dependency
 We will be testing the missingness dependency for `DEMAND.LOSS.MW` with respect to `CAUSE.CATEGORY` and `CLIMATE.REGION`.
 - **CAUSE.CATEGORY**:
-We will first examine the distribution of `CAUSE.CATEGORY` when `DEMAND.LOSS.MW` is missing vs not missing.
+  We will first examine the distribution of `CAUSE.CATEGORY` when `DEMAND.LOSS.MW` is missing vs not missing.
 
-Null Hypothesis: The distribution of `CAUSE.CATEGORY` is the same when `DEMAND.LOSS.MW` is missing vs not missing.
+  Null Hypothesis: The distribution of `CAUSE.CATEGORY` is the same when `DEMAND.LOSS.MW` is missing vs not missing.
 
-Alternate Hypothesis: The distribution of `CAUSE.CATEGORY` is different when `DEMAND.LOSS.MW` is missing vs not missing.
+  Alternate Hypothesis: The distribution of `CAUSE.CATEGORY` is different when `DEMAND.LOSS.MW` is missing vs not missing.
 
 <iframe
   src="assets/demand_loss_missingness_Cause_cat.html"
@@ -124,13 +124,21 @@ Alternate Hypothesis: The distribution of `CAUSE.CATEGORY` is different when `DE
   frameborder="0"
 ></iframe>
 
+  The observed TVD was about 0.18, corresponding to a p-value of 0.0. Consequently, we reject the null hypothesis that the distribution of `CAUSE.CATEGORY` is the same when `DEMAND.LOSS.MW` is missing versus not missing. This suggests that the missingness of `DEMAND.LOSS.MW` may be dependent on `CAUSE.CATEGORY`, but we cannot conclusively state that there is a causal relationship.
+     
+<iframe
+  src="assets/EMP1.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 - **CLIMATE.REGION**:
-Now we will examine the distribution of `CLIMATE.REGION` when `DEMAND.LOSS.MW` is missing vs not missing.
+  Now we will examine the distribution of `CLIMATE.REGION` when `DEMAND.LOSS.MW` is missing vs not missing.
 
-Null Hypothesis: The distribution of `CLIMATE.REGION` is the same when `DEMAND.LOSS.MW` is missing vs not missing.
+  Null Hypothesis: The distribution of `CLIMATE.REGION` is the same when `DEMAND.LOSS.MW` is missing vs not missing.
 
-Alternate Hypothesis: The distribution of `CLIMATE.REGION` is different when `DEMAND.LOSS.MW` is missing vs not missing.
+  Alternate Hypothesis: The distribution of `CLIMATE.REGION` is different when `DEMAND.LOSS.MW` is missing vs not missing.
 
 <iframe
   src="assets/demand_loss_missingness_CLIMATE_cat.html"
@@ -139,12 +147,35 @@ Alternate Hypothesis: The distribution of `CLIMATE.REGION` is different when `DE
   frameborder="0"
 ></iframe>
 
+  The observed TVD was about 0.034, corresponding to a p-value of 0.348. Consequently, we fail to reject the null hypothesis that the distribution of `CAUSE.CATEGORY` is the same when `DEMAND.LOSS.MW` is missing versus not missing. This suggests that the missingness of `DEMAND.LOSS.MW` is not dependent on `CAUSE.CATEGORY`, but we cannot conclusively state that there is no causal relationship.
+
+<iframe
+  src="assets/EMP2.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+
+
 ## Hypothesis Testing
 
 
 ## Framing a Prediction Problem
+Our model aims to predict the duration of an outage, a continuous variable, based on features available at the time of the event. By accurately forecasting outage durations, communities can be better prepared, enabling more efficient response strategies and minimizing disruption to essential services. Since this is a regression problem, we will evaluate our model using two key metrics:
+
+R² : This will help us understand how well our model fits the data. R² measures the proportion of variance in the target variable that is explained by the model.
+
+Mean Absolute Error (MAE): This will be used to quantify the error of the model's predictions. MAE gives us the average absolute difference between predicted and actual values. It is less sensitive to outliers compared to other metrics like Mean Squared Error (MSE) or Root Mean Squared Error (RMSE), making it more robust when there are extreme values in the data.
+
+Feature known at the time of prediciton that will be helpful in our model include YEAR', 'MONTH', 'U.S._STATE', 'NERC.REGION', 'CLIMATE.REGION' ,'ANOMALY.LEVEL', 'CLIMATE.CATEGORY', 'CAUSE.CATEGORY.DETAIL','OUTAGE.DURATION', 'CUSTOMERS.AFFECTED', 'TOTAL.PRICE', 'TSALES','TOTAL.CUSTOMERS', 'POPULATION', and 'SEASON'.
 
 ## Baseline Model
+Our baseline model incorporates the month of the outage and the cause category of the power outage to predict its duration and severity. By accurately forecasting these factors, communities can better anticipate and prepare for outages. We selected the month as a feature based on the hypothesis that the duration of power outages varies significantly across different seasons. This relationship, highlighted by the statistical significance of seasonality, suggests that including the month may help capture important seasonal patterns affecting outage duration. As for cause cateogry, certain causes of power outages are more likey to result in longer lasting outages than other cause (i.e Hurricane vs Vandalism).
+
+We first onehotencoded the cause category and then fit the model.
+
+The MAE was 2586 and R^2 was 0.16 indicating that our baseline model did not perform the best. 
 
 ## Final Model
 
