@@ -237,5 +237,12 @@ For our fariness analysis, we wanted to see if our best model made similarly acc
 
 **Alternative Hypothesis:** Our model is not fair. Predictions for outage duration for states on the east coast have different rmse than states not on the east coast. 
 
-After conducting our predictions by shuffling the state labels, we found that a p-value of 1. Every single permutation test that we ran had a greater difference between the rmse of the two predictions than our initial state labels had. It seems that our model was fair when predicting for states on different coasts. 
+To complete our permutation test, we ran 1000 simulations by shuffling the labels and predicting outage duration for the new groups. After running all of the simulations we found a p-value of 0.93. It seems that our model was fair when predicting for states on different coasts. 
 
+<iframe
+  src="assests/fairness_analysis.html"
+  width="800"
+  height="600"
+  frameborder="0"
+  style="margin: 0; padding: 0;"
+></iframe>
