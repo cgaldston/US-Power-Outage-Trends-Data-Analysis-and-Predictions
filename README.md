@@ -42,13 +42,13 @@ Our dataset consists of 1534 rows and 56 columns, but the main ones that we are 
 
 
 ### Head of Cleaned Dataset with select columns 
-|    |   YEAR |   MONTH |   POPULATION |   DEMAND.LOSS.MW |   CUSTOMERS.AFFECTED |   OUTAGE.DURATION |
-|---:|-------:|--------:|-------------:|-----------------:|---------------------:|------------------:|
-|  0 |   2011 |       7 |  5.34812e+06 |              nan |                70000 |              3060 |
-|  1 |   2014 |       5 |  5.45712e+06 |              nan |                  nan |                 1 |
-|  2 |   2010 |      10 |  5.3109e+06  |              nan |                70000 |              3000 |
-|  3 |   2012 |       6 |  5.38044e+06 |              nan |                68200 |              2550 |
-|  4 |   2015 |       7 |  5.48959e+06 |              250 |               250000 |              1740 |
+|    |   YEAR |   MONTH |   POPULATION |   DEMAND.LOSS.MW |   CUSTOMERS.AFFECTED |
+|---:|-------:|--------:|-------------:|-----------------:|---------------------:|
+|  0 |   2011 |       7 |  5.34812e+06 |              nan |                70000 |
+|  1 |   2014 |       5 |  5.45712e+06 |              nan |                  nan |
+|  2 |   2010 |      10 |  5.3109e+06  |              nan |                70000 |
+|  3 |   2012 |       6 |  5.38044e+06 |              nan |                68200 |
+|  4 |   2015 |       7 |  5.48959e+06 |              250 |               250000 |
 
 
 
