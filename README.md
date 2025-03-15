@@ -25,12 +25,6 @@ Our dataset consists of 1534 rows and 56 columns, but the main ones that we are 
 | `POPULATION`| Duration of outage (minutes) |
 | `DEMAND.LOSS.MW`|  Amount of peak demand lost during an outage event (Megawatt) |
 | `CUSTOMERS.AFFECTED`| Number of customers affected by a power outage event |
-| `RES.SALES`| Electricity consumption in the residential sector (megawatt-hour)|
-| `COM.SALES`| Electricity consumption in the commercial sector (megawatt-hour)|
-| `IND.SALES`| Electricity consumption in the industrial sector (megawatt-hour)|
-| `TOTAL.SALES`| Total electricity consumption in the U.S. state (megawatt-hour)|
-| `UTIL.CONTRI`| % of Utility industry׳s contribution to the total GSP in the State|
-| `PC.REALGSP.STATE`| Per capita real gross state product (GSP) in the U.S. state (measured in 2009 chained U.S. dollars)|
 | `CAUSE.REGION`| U.S. Continental Region|
 | `CAUSE.CATEGORY`| Categories of all the events causing the major power outages|
 | `CAUSE.CATEGORY.DETAIL`| Detailed description of the event categories causing the major power outages|
@@ -48,13 +42,13 @@ Our dataset consists of 1534 rows and 56 columns, but the main ones that we are 
 
 
 ### Head of cleaned dataset
-|    | U.S._STATE   |   POPULATION | NERC.REGION   | CAUSE.CATEGORY     |   OUTAGE.DURATION |   CUSTOMERS.AFFECTED | OUTAGE.START        |
-|---:|:-------------|-------------:|:--------------|:-------------------|------------------:|---------------------:|:--------------------|
-|  0 | Minnesota    |  5.34812e+06 | MRO           | severe weather     |              3060 |                70000 | 2011-07-01 17:00:00 |
-|  1 | Minnesota    |  5.45712e+06 | MRO           | intentional attack |                 1 |                  nan | 2014-05-11 18:38:00 |
-|  2 | Minnesota    |  5.3109e+06  | MRO           | severe weather     |              3000 |                70000 | 2010-10-26 20:00:00 |
-|  3 | Minnesota    |  5.38044e+06 | MRO           | severe weather     |              2550 |                68200 | 2012-06-19 04:30:00 |
-|  4 | Minnesota    |  5.48959e+06 | MRO           | severe weather     |              1740 |               250000 | 2015-07-18 02:00:00 |
+|    |   YEAR |   MONTH | U.S._STATE   | POSTAL.CODE   | NERC.REGION   | CLIMATE.REGION     |   ANOMALY.LEVEL | CLIMATE.CATEGORY   | CAUSE.CATEGORY     | CAUSE.CATEGORY.DETAIL   |   OUTAGE.DURATION |   DEMAND.LOSS.MW |   CUSTOMERS.AFFECTED |   RES.PRICE |   COM.PRICE |   IND.PRICE |   TOTAL.PRICE |   RES.SALES |   COM.SALES |   IND.SALES |   TOTAL.SALES |   RES.CUSTOMERS |   COM.CUSTOMERS |   IND.CUSTOMERS |   TOTAL.CUSTOMERS |   RES.CUST.PCT |   COM.CUST.PCT |   IND.CUST.PCT |   PC.REALGSP.REL |   PC.REALGSP.CHANGE |   UTIL.REALGSP |   TOTAL.REALGSP |   PI.UTIL.OFUSA |   POPULATION |   POPPCT_URBAN |   POPPCT_UC |   POPDEN_URBAN |   POPDEN_UC | OUTAGE.START        | OUTAGE.RESTORATION   |
+|---:|-------:|--------:|:-------------|:--------------|:--------------|:-------------------|----------------:|:-------------------|:-------------------|:------------------------|------------------:|-----------------:|---------------------:|------------:|------------:|------------:|--------------:|------------:|------------:|------------:|--------------:|----------------:|----------------:|----------------:|------------------:|---------------:|---------------:|---------------:|-----------------:|--------------------:|---------------:|----------------:|----------------:|-------------:|---------------:|------------:|---------------:|------------:|:--------------------|:---------------------|
+|  0 |   2011 |       7 | Minnesota    | MN            | MRO           | East North Central |            -0.3 | normal             | severe weather     | nan                     |              3060 |              nan |                70000 |       11.6  |        9.18 |        6.81 |          9.28 |     2332915 |     2114774 |     2113291 |       6562520 |     2.30874e+06 |          276286 |           10673 |       2.5957e+06  |        88.9448 |        10.644  |       0.411181 |          1.07738 |                 1.6 |           4802 |          274182 |             2.2 |  5.34812e+06 |          73.27 |       15.28 |           2279 |      1700.5 | 2011-07-01 17:00:00 | 2011-07-03 20:00:00  |
+|  1 |   2014 |       5 | Minnesota    | MN            | MRO           | East North Central |            -0.1 | normal             | intentional attack | vandalism               |                 1 |              nan |                  nan |       12.12 |        9.71 |        6.49 |          9.28 |     1586986 |     1807756 |     1887927 |       5284231 |     2.34586e+06 |          284978 |            9898 |       2.64074e+06 |        88.8335 |        10.7916 |       0.37482  |          1.08979 |                 1.9 |           5226 |          291955 |             2.2 |  5.45712e+06 |          73.27 |       15.28 |           2279 |      1700.5 | 2014-05-11 18:38:00 | 2014-05-11 18:39:00  |
+|  2 |   2010 |      10 | Minnesota    | MN            | MRO           | East North Central |            -1.5 | cold               | severe weather     | heavy wind              |              3000 |              nan |                70000 |       10.87 |        8.19 |        6.07 |          8.15 |     1467293 |     1801683 |     1951295 |       5222116 |     2.30029e+06 |          276463 |           10150 |       2.5869e+06  |        88.9206 |        10.687  |       0.392361 |          1.06683 |                 2.7 |           4571 |          267895 |             2.1 |  5.3109e+06  |          73.27 |       15.28 |           2279 |      1700.5 | 2010-10-26 20:00:00 | 2010-10-28 22:00:00  |
+|  3 |   2012 |       6 | Minnesota    | MN            | MRO           | East North Central |            -0.1 | normal             | severe weather     | thunderstorm            |              2550 |              nan |                68200 |       11.79 |        9.25 |        6.71 |          9.19 |     1851519 |     1941174 |     1993026 |       5787064 |     2.31734e+06 |          278466 |           11010 |       2.60681e+06 |        88.8954 |        10.6822 |       0.422355 |          1.07148 |                 0.6 |           5364 |          277627 |             2.2 |  5.38044e+06 |          73.27 |       15.28 |           2279 |      1700.5 | 2012-06-19 04:30:00 | 2012-06-20 23:00:00  |
+|  4 |   2015 |       7 | Minnesota    | MN            | MRO           | East North Central |             1.2 | warm               | severe weather     | nan                     |              1740 |              250 |               250000 |       13.07 |       10.16 |        7.74 |         10.43 |     2028875 |     2161612 |     1777937 |       5970339 |     2.37467e+06 |          289044 |            9812 |       2.67353e+06 |        88.8216 |        10.8113 |       0.367005 |          1.09203 |                 1.7 |           4873 |          292023 |             2.2 |  5.48959e+06 |          73.27 |       15.28 |           2279 |      1700.5 | 2015-07-18 02:00:00 | 2015-07-19 07:00:00  |
 
 
 
@@ -66,23 +60,23 @@ For our univariate analysis it first makes sense to look at the distribution of 
   width="800" 
   height="600" 
   frameborder="0" 
-  style="margin: 0; padding: 0;"
+  style="margin: 0; padding: 0; display: block;"
   ></iframe>
 
-Based on this plot, we can tell that most of the power outages are in the dataset last less than ten thousand total minutes, however there are some outliers that lasted much longer. After doing some research into the data, we found that there were a few outliers that seemed to be incorrect as upon researching these outages we were unable to find references of these outages online, so we decided to remove them from our data set. 
+Based on this plot, we can tell that most of the power outages in the dataset last less than ten thousand total minutes, however there are some outliers that lasted much longer. After doing some research into these outliers, we found that there were a few that seemed to be incorrect as after researching these outages we were unable to find references of these them online, so we decided to remove them from our data set. 
 
 ### Bivariate Analysis
-For our bivariate analysis we decided to look at the relationship between outage duration the other columns in our dataset. We started by creating scatter plots between outage duration and every quantitative column in our dataset, to see if there were any noticeable relationships that we could use to better understand how different variables impact outage duration. Of these scatter plots, the most interesting relationship we found was between outage duration and customers affected. We also added a trendline to the plot so that we could better visualize this trend. 
+For our bivariate analysis we decided to look at the relationship between outage duration and the other columns in our dataset. We started by creating scatter plots between outage duration and every quantitative column in our dataset, to see if there were any noticeable relationships that we could use to better understand how different variables impact outage duration. Of these scatter plots, the most interesting relationship we found was between outage duration and customers affected. We also added a trendline to the plot so that we could better visualize this trend. 
 
 <iframe
   src="assets/duration_vs_customers_affected.html"
   width="800"
   height="600"
   frameborder="0"
-  style="margin: 0; padding: 0;"
+  style="margin: 0; padding: 0; display: block;"
 ></iframe>
 
-As we can see from the plot, although the trend is not incredibly strong, there seems to be some positive correlation between the duration of the outage and the number of customers affected. This is important as it gives evidence that the duration of an outage has a result on how the outage impacts the community. We also calculated the correlation coefficient for this relationship so that we have a quantitative measurement of this trend and we found a correlation coefficient of 0.2619. This also indicates that using this feature will be helpful later  when we try to predict the duration of an outage. 
+As we can see from the plot, although the trend is not incredibly strong, there seems to be some positive correlation between the duration of the outage and the number of customers affected. This is important as it gives evidence that the duration of an outage has a result on how the outage impacts the community. We also calculated the correlation coefficient for this relationship so that we have a quantitative measurement of this trend and we found a correlation coefficient of 0.2619.
 
 Another relationship that we chose to inspect was how the location of the power outage impacts the duration of the outage. To do this, we used Folium to create a map of the United States and heat mapped areas states by outage duration. 
 
@@ -91,10 +85,10 @@ Another relationship that we chose to inspect was how the location of the power 
   width="800"
   height="600"
   frameborder="0"
-  style="margin: 0; padding: 0;"
+  style="margin: 0; padding: 0; display: block;"
 ></iframe>
 
-Based on this plot, it seems that the state the power outage occured has an impact on the duration of the outage. This can be helpful for us to understand qualities of these areas that may impact outage duration, and also suggests it will be helpful for our prediction task as well. 
+Based on this plot, it seems that the state the power outage occured has an impact on the duration of the outage. This can be helpful for us to understand qualities of these areas that may impact outage duration, and also suggests it will be helpful for our prediction task. 
 
 ### Interesting Aggregates
 To further investigate the geographic distribution of power outage impacts, we grouped our dataset by CLIMATE.REGION and calculated the average outage duration and the average number of customers affected in each region. This provides insight into how regional factors might influence both the duration of outages and the scale of their impact on customers.
@@ -110,7 +104,7 @@ To further investigate the geographic distribution of power outage impacts, we g
 | Southwest          |          1566.14  |              39028.9 |
 | West               |          1628.33  |             194580   |
 | West North Central |           696.562 |              47316   |
-
+\n
 By analyzing these regional aggregates, we can better understand which areas are more vulnerable to prolonged outages and which regions experience more widespread customer disruption. Further investigation into the causes of these regional differences can help improve outage management strategies tailored to each area's unique needs.
 
 
@@ -131,58 +125,59 @@ By examining these averages, we gain a clearer picture of how different causes o
 ## Assessment of Missingness
 
 ### NMAR Analysis
-A columns that is most likely  NMAR is `OUTAGE.START`. The paper that this data comes from states that the data was aquired from a variety of public datasets. In this case it might be possible the time `OUTAGE.RESTORATION` was avaiable from a dataset , but its corresponding `OUTAGE.START` was not hence the NA value. Information we could collect in order for the missigness to determine if missingess Mechanism is MAR is to check the sources used for the collection of `OUTAGE.RESTORATION` (`OUTAGE.RESTORATION.DATE`, `OUTAGE.RESTORATION.TIME`) and Determine whether some sources less likely to have the correspodinng OUTAGE.START for an `OUTAGE.RESTORATION`. 
+A column that we believed was most likely not missing at random was `CUSTOMERS.AFFECTED`. If an outage did not affect that many customers, there is a chance that whoever collected the data did not feel the need to collect this information. Since our dataset is an aggregate of many different datasets, some may have deemed smaller values for this column as unecessary, so the missingness of the value depends on the value itself. In order to see if it is missing at random, we could collect data on how the organizations that collected this data determined whether customers affected was signficant. If we had data about what organization collected each piece of data, we may be able to determine if certain companies didn't report `CUSTOMERS.AFFECTED`, which would make it MAR. 
 
 ### Missingness Dependency
 We will be testing the missingness dependency for `DEMAND.LOSS.MW` with respect to `CAUSE.CATEGORY` and `CLIMATE.REGION`.
-- **CAUSE.CATEGORY**:
-  We will first examine the distribution of `CAUSE.CATEGORY` when `DEMAND.LOSS.MW` is missing vs not missing.
+#### **CAUSE.CATEGORY**
 
-  **Null Hypothesis:**: The distribution of `CAUSE.CATEGORY` is the same when `DEMAND.LOSS.MW` is missing vs not missing.
+We will first examine the distribution of `CAUSE.CATEGORY` when `DEMAND.LOSS.MW` is missing vs not missing.
 
-  **Alternative Hypothesis:**: The distribution of `CAUSE.CATEGORY` is different when `DEMAND.LOSS.MW` is missing vs not missing.
+**Null Hypothesis:**: The distribution of `CAUSE.CATEGORY` is the same when `DEMAND.LOSS.MW` is missing vs not missing.
+
+**Alternative Hypothesis:**: The distribution of `CAUSE.CATEGORY` is different when `DEMAND.LOSS.MW` is missing vs not missing.
 
 <iframe
   src="assets/demand_loss_missingness_Cause_cat.html"
   width="800"
   height="600"
   frameborder="0"
-  style="margin: 0; padding: 0;"
+  style="margin: 0; padding: 0; display: block;"
 ></iframe>
 
-  The observed TVD was about 0.18, corresponding to a p-value of 0.0. Consequently, we reject the null hypothesis that the distribution of `CAUSE.CATEGORY` is the same when `DEMAND.LOSS.MW` is missing versus not missing. This suggests that the missingness of `DEMAND.LOSS.MW` may be dependent on `CAUSE.CATEGORY`, but we cannot conclusively state that there is a causal relationship.
+The observed TVD was about 0.18, corresponding to a p-value of 0.0. Consequently, we reject the null hypothesis that the distribution of `CAUSE.CATEGORY` is the same when `DEMAND.LOSS.MW` is missing versus not missing. This suggests that the missingness of `DEMAND.LOSS.MW` may be dependent on `CAUSE.CATEGORY`, but we cannot conclusively state that there is a causal relationship.
      
 <iframe
   src="assets/EMP1.html"
   width="800"
   height="600"
   frameborder="0"
-  style="margin: 0; padding: 0;"
+  style="margin: 0; padding: 0; display: block;"
 ></iframe>
 
-- **CLIMATE.REGION**:
-  Now we will examine the distribution of `CLIMATE.REGION` when `DEMAND.LOSS.MW` is missing vs not missing.
+#### **CLIMATE.REGION**:
+Now we will examine the distribution of `CLIMATE.REGION` when `DEMAND.LOSS.MW` is missing vs not missing.
 
-  **Null Hypothesis:**: The distribution of `CLIMATE.REGION` is the same when `DEMAND.LOSS.MW` is missing vs not missing.
+**Null Hypothesis:**: The distribution of `CLIMATE.REGION` is the same when `DEMAND.LOSS.MW` is missing vs not missing.
 
-  **Alternative Hypothesis:**: The distribution of `CLIMATE.REGION` is different when `DEMAND.LOSS.MW` is missing vs not missing.
+**Alternative Hypothesis:**: The distribution of `CLIMATE.REGION` is different when `DEMAND.LOSS.MW` is missing vs not missing.
 
 <iframe
   src="assets/demand_loss_missingness_CLIMATE_cat.html"
   width="800"
   height="600"
   frameborder="0"
-  style="margin: 0; padding: 0;"
+  style="margin: 0; padding: 0; display: block;"
 ></iframe>
 
-  The observed TVD was about 0.034, corresponding to a p-value of 0.348. Consequently, we fail to reject the null hypothesis that the distribution of `CAUSE.CATEGORY` is the same when `DEMAND.LOSS.MW` is missing versus not missing. This suggests that the missingness of `DEMAND.LOSS.MW` is not dependent on `CAUSE.CATEGORY`, but we cannot conclusively state that there is no causal relationship.
+The observed TVD was about 0.034, corresponding to a p-value of 0.348. Consequently, we fail to reject the null hypothesis that the distribution of `CAUSE.CATEGORY` is the same when `DEMAND.LOSS.MW` is missing versus not missing. This suggests that the missingness of `DEMAND.LOSS.MW` is not dependent on `CAUSE.CATEGORY`, but we cannot conclusively state that there is no causal relationship.
 
 <iframe
   src="assets/EMP2.html"
   width="800"
   height="600"
   frameborder="0"
-  style="margin: 0; padding: 0;"
+  style="margin: 0; padding: 0; display: block;"
 ></iframe>
 
 ## Hypothesis Testing
@@ -200,11 +195,11 @@ For our hypothesis test, we wanted to look at whether or not the season that the
 The p-value that we got was 0.0008, which was less that our significance level of 0.05. As a result we rejected the null hypothesis and moved to the alternative: it seems that there is a difference in the average power outage duration for different seasons, however, we cannot conclude absolutely that season has an impact on `OUTAGE.DURATION`. Here is a plot of the absolute difference in means for every simulation.
 
 <iframe
-  src="assests/hypothesis_test.html"
+  src="assets/hypothesis_test.html"
   width="800"
   height="600"
   frameborder="0"
-  style="margin: 0; padding: 0;"
+  style="margin: 0; padding: 0; display: block;"
 ></iframe>
 
 ## Framing a Prediction Problem
@@ -212,16 +207,16 @@ Our model aims to predict the duration of an outage, a continuous variable, base
 
 R² : This will help us understand how well our model fits the data. R² measures the proportion of variance in the target variable that is explained by the model.
 
-Mean Absolute Error (MAE): This will be used to quantify the error of the model's predictions. MAE gives us the average absolute difference between predicted and actual values. It is less sensitive to outliers compared to other metrics like Mean Squared Error (MSE) or Root Mean Squared Error (RMSE), making it more robust when there are extreme values in the data.
+Root Mean Squared Error (RMSE): This will be used to quantify the error of the model's predictions. RMSE gives us the square root of the average squared difference between predicted and actual values. 
 
 Features known at the time of prediciton that will be helpful in our model include YEAR', 'MONTH', 'U.S._STATE', 'NERC.REGION', 'CLIMATE.REGION' ,'ANOMALY.LEVEL', 'CLIMATE.CATEGORY', 'CAUSE.CATEGORY.DETAIL', 'TOTAL.PRICE', 'TOTAL.SALES','TOTAL.CUSTOMERS', 'POPULATION', and 'SEASON'.
 
 ## Baseline Model
 Our baseline model incorporates the month of the outage and the cause category of the power outage to predict its duration and severity. By accurately forecasting these factors, communities can better anticipate and prepare for outages. We selected the month as a feature based on the hypothesis that the duration of power outages varies significantly across different seasons. This relationship, highlighted by the statistical significance of seasonality, suggests that including the month may help capture important seasonal patterns affecting outage duration. As for cause cateogry, certain causes of power outages are more likey to result in longer lasting outages than other cause (i.e Hurricane vs Vandalism).
 
-We first onehotencoded the cause category and then fit the model.
+We first one hot encoded the cause category and then fit the model.
 
-The MAE was 2586 and R^2 was 0.16 indicating that our baseline model did not perform the best. 
+The RMSE and R^2 was 0.16 indicating that our baseline model did not perform the best. 
 
 ## Final Model
 For our final model, we wanted to explore what features of our dataset would be useful for our predictive tasks. We started by one hot encoding our categorical variables. Because all of our categories are nominal, we used sklearns OneHotEncoder(). We also needed to make sure that all of our quantitative variables are represented properly as they were initially represented as objects. Some of the features that we incorporated in our final model were `U.S._STATE`, `CLIMATE.REGION`, `ANOMALY.LEVEL`, `CLIMATE.CATEGORY`, `YEAR`, `MONTH`, `CAUSE.CATEGORY.DETAIL`, `TOTAL.PRICE`, `TOTAL.SALES`, `TOTAL.CUSTOMERS`,`POPULATION`,`SEASON`. 
