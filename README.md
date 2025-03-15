@@ -104,7 +104,8 @@ To further investigate the geographic distribution of power outage impacts, we g
 | Southwest          |          1566.14  |              39028.9 |
 | West               |          1628.33  |             194580   |
 | West North Central |           696.562 |              47316   |
-\n
+
+
 By analyzing these regional aggregates, we can better understand which areas are more vulnerable to prolonged outages and which regions experience more widespread customer disruption. Further investigation into the causes of these regional differences can help improve outage management strategies tailored to each area's unique needs.
 
 
@@ -223,7 +224,7 @@ For our final model, we wanted to explore what features of our dataset would be 
 
 We carefully looked through the work we did at this point in our project to make this decision. For example, in our hypothesis test we found that `SEASON` played a role in outage duration, so we decided to use `YEAR` and `MONTH` as features in our model because these are more granular than season, so we believed that they would be a good indicator of the outage duration. We also included customers affected because in our bivariate analysis we saw that there was some relation between customers affected and outage duration. We also saw that the cause of an outage may play a factor in the duration of an outage, so this was a natural feature for us to use. 
 
-After trying multiple models including multple linear regression, random forests, and gradient boosted decision trees (XGBoost), we found that our best performing model in terms of RMSE and R² on the test set was a random forest. We found the best performing hyperparamters using three cross folds and 180 hyperparameter combinations. We found that the best performing hyperparameters were {'model__max_depth': 20, 'model__min_samples_leaf': 1, 'model__min_samples_split': 5, 'model__n_estimators': 200}. This resulted in a RMSE of  1.93 and an R² score of 0.56. Since we scaled the value of outage duration by log1p before we made our predictions (in order to stabilize the variance given the large range of values for duration), we need to compute the inverse of this if we want to accurately compare it to our basline model. This resulted in a RMSE of 7052.49 and an R² score of 0.19. This is significantly worse than the scaled verion, however we still saw an improvement over our baseline model. 
+After trying multiple models including multple linear regression, random forests, and gradient boosted decision trees (XGBoost), we found that our best performing model in terms of RMSE and R² on the test set was a random forest. We found the best performing hyperparamters using three cross folds and 180 hyperparameter combinations. We found that the best performing hyperparameters were {'model__max_depth': 20, 'model__min_samples_leaf': 1, 'model__min_samples_split': 5, 'model__n_estimators': 200}. This resulted in a RMSE of  1.93 and an R² score of 0.56. Since we scaled the value of outage duration by log1p before we made our predictions (in order to stabilize the variance given the large range of values for duration), we need to compute the inverse of this if we want to accurately compare it to our basline model. This resulted in a RMSE of 3196.22 and R² score of 0.24. This is significantly worse than the scaled verion, however we still saw an improvement over our baseline model. 
 
 ## Fairness Analysis
 For our fariness analysis, we wanted to see if our best model made similarly accurate predictions for states that were on the east coast vs states that were not. From our heatmap in the Bivariate analysis section, it seemed that states on the east coast tended to have longer outage duration than other states, so we wanted to test whether our model would do similarly on a group of our data consisting of just states on the east coast and states not on the east coast. After dividing our data based on these groups, and making predictions using our model we found that the difference in rmse on the predictions between the two groups was -0.01418. This seemed pretty fair, but to make sure we needed to perform a permutation test on our data.
@@ -237,7 +238,7 @@ To complete our permutation test, we ran 1000 simulations by shuffling the label
 The figure below show the distribution of the test statistic. 
 
 <iframe
-  src="assests/fairness_analysis.html"
+  src="assets/fairness_analysis.html"
   width="800"
   height="600"
   frameborder="0"
